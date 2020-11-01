@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
+
 *,
 *::before,
 *::after {
@@ -13,7 +15,8 @@
   --clr-accent-dark: rgb(163, 38, 0);
   --clr-secondary: rgb(0, 62, 163);
 
-  --br: .5em;
+  --br: 0.5em;
+  --transition: transform 200ms cubic-bezier(0.21, 1.06, 0.81, 1.01), opacity 100ms linear;
 }
 
 body {
@@ -22,6 +25,7 @@ body {
   place-items: center;
   background: var(--clr-dark);
   color: var(--clr-light);
+  font-family: roboto;
 }
 
 img {
@@ -36,13 +40,15 @@ img {
 .streamers {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  text-align: center;
 
   img {
-    height: 1em;
-    width: 1em;
-    border-radius: 50%;    
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
   }
+  
 }
 
 .rank {
@@ -50,17 +56,22 @@ img {
   font-weight: bold;
   top: 0;
   right: 1em;
-  background: rgba(0,0,0, 0.65);
-  padding: .5em .5em .75em;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 0.5em 0.5em 0.75em;
   clip-path: polygon(100% 0%, 100% 53%, 100% 100%, 52% 80%, 0 100%, 0 1%);
+  z-index: 1000;
+  transition: var(--transtion);
 }
 
-.front {
+.front {  
+  transition: 250ms;
+
   .name {
     margin: 0.75em 0;
   }
   .thumbnail {
     border-radius: var(--br);
+    width: 100%;
   }
   .stats {
     display: flex;
@@ -81,5 +92,115 @@ img {
 }
 
 .back {
-  display: none;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em; /*nice one for flex*/
+
+  .streaming-info {
+    //display: flex;
+    //justify-content: space-between;
+    columns: 2;
+    column-rule: 1px solid rgba(255,255,255, 0.3);
+  }
+
+  .game-stat {
+    font-size: 1.25rem;
+    text-align: center;
+    span {
+      display: block;
+      font-size: 0.85rem;
+    }
+    
+  }
+  .btn {    
+    padding: 0.5em 1.5em;
+    cursor: pointer;
+    border: 0;
+    background: var(--clr-secondary);
+    color: var(--clr-light);
+    border-radius: 100vw;
+    font-weight: 600;
+    
+    &:hover {
+      background-color: #111111;
+      color: #ccc;
+    }
+  }  
+
+}
+
+.background {
+  background: rgb(40, 36, 40);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  transform: scale(0.2, 0.9);
+  border-radius: var(--br);
+  opacity: 0;
+}
+
+.game:hover {
+  .rank {
+    transform: translate(150%, -85%);
+  }
+  .front {
+    transform: translateY(-30%) scale(0.85);
+    .name {
+      animation: gameName 250ms forwards;
+    }
+    .stats {
+      opacity: 0;
+    }
+  }
+  .back {
+    opacity: 1;    
+    .streamers {
+      width: 100%;      
+    }
+    .name {
+      font-weight: 700;
+    }
+    .streamer p {
+      font-size: 0.75em;
+    }
+  }
+  .background {
+    transition: transform 200ms cubic-bezier(0.21, 1.06, 0.81, 1.01), opacity 100ms linear;
+    opacity: 1;
+    transform: scale(1.4, 1.2);
+  }
+}
+
+@keyframes gameName {
+  0% {
+    text-align: left;
+    opacity: 1;
+  }
+
+  20% {
+    text-align: left;
+    opacity: 0;
+  }
+
+  50% {
+    text-align: center;
+    opacity: 0;
+    transform: scale(1.2);
+  }
+
+  100% {
+    text-align: center;
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
