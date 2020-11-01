@@ -12,6 +12,8 @@
   --clr-accent: rgb(222, 52, 0);
   --clr-accent-dark: rgb(163, 38, 0);
   --clr-secondary: rgb(0, 62, 163);
+
+  --br: .5em;
 }
 
 body {
@@ -35,12 +37,12 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-}
 
-.streamers img {
-  height: 2em;
-  width: 2em;
-  border-radius: 50%;
+  img {
+    height: 1em;
+    width: 1em;
+    border-radius: 50%;    
+  }
 }
 
 .rank {
@@ -48,7 +50,7 @@ img {
   font-weight: bold;
   top: 0;
   right: 1em;
-  background: rgba(0,0,0, 0.5);
+  background: rgba(0,0,0, 0.65);
   padding: .5em .5em .75em;
   clip-path: polygon(100% 0%, 100% 53%, 100% 100%, 52% 80%, 0 100%, 0 1%);
 }
@@ -56,6 +58,9 @@ img {
 .front {
   .name {
     margin: 0.75em 0;
+  }
+  .thumbnail {
+    border-radius: var(--br);
   }
   .stats {
     display: flex;
