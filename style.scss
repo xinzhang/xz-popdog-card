@@ -48,7 +48,6 @@ img {
     width: 2em;
     border-radius: 50%;
   }
-  
 }
 
 .rank {
@@ -63,7 +62,7 @@ img {
   transition: var(--transtion);
 }
 
-.front {  
+.front {
   transition: 250ms;
 
   .name {
@@ -103,11 +102,13 @@ img {
   align-items: center;
   gap: 1em; /*nice one for flex*/
 
+  transform: translateY(35%);
+
   .streaming-info {
     //display: flex;
     //justify-content: space-between;
     columns: 2;
-    column-rule: 1px solid rgba(255,255,255, 0.3);
+    column-rule: 1px solid rgba(255, 255, 255, 0.3);
   }
 
   .game-stat {
@@ -117,9 +118,8 @@ img {
       display: block;
       font-size: 0.85rem;
     }
-    
   }
-  .btn {    
+  .btn {
     padding: 0.5em 1.5em;
     cursor: pointer;
     border: 0;
@@ -127,13 +127,12 @@ img {
     color: var(--clr-light);
     border-radius: 100vw;
     font-weight: 600;
-    
+
     &:hover {
       background-color: #111111;
       color: #ccc;
     }
-  }  
-
+  }
 }
 
 .background {
@@ -163,9 +162,12 @@ img {
     }
   }
   .back {
-    opacity: 1;    
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 250ms ease, opacity 150ms linear;
+
     .streamers {
-      width: 100%;      
+      width: 100%;
     }
     .name {
       font-weight: 700;
